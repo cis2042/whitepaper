@@ -1,0 +1,391 @@
+@import "tailwindcss";
+
+@theme {
+  /* twin3.ai Official Color Palette */
+  --color-base: #0c1a10;
+  --color-base-deep: #060e08;
+  --color-cream: #e8e0c8;
+  --color-cream-soft: #bfb89a;
+  --color-gold: #d4c89a;
+  --color-gold-hover: #c4b880;
+  --color-forest: #a8b87a;
+  --color-sage: #6a8a5a;
+  --color-sage-dim: rgba(168, 184, 122, 0.12);
+
+  --color-background: #0c1a10;
+  --color-foreground: #e8e0c8;
+
+  --font-heading: var(--font-eb-garamond);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+:root {
+  --background: #0c1a10;
+  --foreground: #e8e0c8;
+}
+
+html {
+  font-size: 120%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.75;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headings use EB Garamond */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading), Georgia, serif;
+  line-height: 1.2;
+}
+
+/* twin3.ai Glass Panel */
+.glass-panel {
+  background: rgba(12, 26, 16, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(168, 184, 122, 0.12);
+}
+
+/* Sage Left Border Accent (twin3 signature) */
+.accent-border {
+  border-left: 2px solid #6a8a5a;
+  padding-left: 1.5rem;
+}
+
+/* Mono Labels */
+.mono-label {
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+/* Hex Matrix Background */
+.hex-matrix-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.06;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(168, 184, 122, 0.15) 28px,
+      rgba(168, 184, 122, 0.15) 29px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 28px,
+      rgba(168, 184, 122, 0.15) 28px,
+      rgba(168, 184, 122, 0.15) 29px
+    );
+}
+
+/* Gold Glow (subtle) */
+.glow-gold {
+  text-shadow: 0 0 20px rgba(212, 200, 154, 0.4);
+}
+
+/* CTA Button (twin3 style) */
+.btn-gold {
+  background: #d4c89a;
+  color: #0c1a10;
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.06em;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+.btn-gold:hover {
+  background: #c4b880;
+}
+
+.btn-outline {
+  border: 1px solid rgba(168, 184, 122, 0.3);
+  color: #bfb89a;
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.06em;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.btn-outline:hover {
+  border-color: #d4c89a;
+  color: #e8e0c8;
+}
+
+/* Selection */
+::selection {
+  background: rgba(212, 200, 154, 0.3);
+  color: #e8e0c8;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #060e08;
+}
+::-webkit-scrollbar-thumb {
+  background: #6a8a5a;
+  border-radius: 3px;
+}
+
+/* Prose-style whitepaper text */
+.prose-wp {
+  line-height: 1.85;
+}
+.prose-wp p {
+  color: #bfb89a;
+  margin-bottom: 1.2em;
+}
+.prose-wp ul, .prose-wp ol {
+  color: #bfb89a;
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+.prose-wp li {
+  margin-bottom: 0.5em;
+}
+.prose-wp h2 {
+  font-family: var(--font-heading), Georgia, serif;
+  color: #e8e0c8;
+  font-size: 1.6rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+.prose-wp h3 {
+  font-family: var(--font-heading), Georgia, serif;
+  color: #e8e0c8;
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+.prose-wp a {
+  color: #d4c89a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-wp a:hover {
+  color: #e8e0c8;
+}
+.prose-wp blockquote {
+  border-left: 2px solid #6a8a5a;
+  padding-left: 1.2rem;
+  color: #bfb89a;
+  font-style: italic;
+  margin: 1.5em 0;
+}
+.prose-wp table {
+  width: 100%;
+  font-size: 0.85rem;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+}
+.prose-wp thead th {
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  color: #6a8a5a;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid rgba(168,184,122,0.2);
+  text-align: left;
+}
+.prose-wp tbody td {
+  padding: 0.6rem 0.8rem;
+  color: #bfb89a;
+  border-bottom: 1px solid rgba(168,184,122,0.06);
+  vertical-align: top;
+}
+.prose-wp tbody tr:hover {
+  background: rgba(232,224,200,0.03);
+}
+.prose-wp pre {
+  background: #060e08;
+  border: 1px solid rgba(168,184,122,0.12);
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  color: #a8b87a;
+  line-height: 1.6;
+  margin: 1.5em 0;
+}
+.prose-wp code {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.85em;
+  color: #a8b87a;
+}
+
+/* ═══════════════════════════════════════════════
+   CREAM MODE (Light Theme)
+   ═══════════════════════════════════════════════ */
+
+[data-theme="cream"] {
+  --background: #f2ede0;
+  --foreground: #1a2a1e;
+  --sidebar-bg: #e8e0c8;
+}
+
+[data-theme="cream"] body {
+  background: #f2ede0;
+  color: #1a2a1e;
+}
+
+[data-theme="cream"] .glass-panel {
+  background: rgba(232, 224, 200, 0.65);
+  border-color: rgba(106, 138, 90, 0.18);
+}
+
+[data-theme="cream"] .hex-matrix-bg {
+  opacity: 0.03;
+}
+
+[data-theme="cream"] .prose-wp p,
+[data-theme="cream"] .prose-wp ul,
+[data-theme="cream"] .prose-wp ol,
+[data-theme="cream"] .prose-wp li {
+  color: #3d4a3e;
+}
+
+[data-theme="cream"] .prose-wp h2,
+[data-theme="cream"] .prose-wp h3,
+[data-theme="cream"] h1,
+[data-theme="cream"] h2,
+[data-theme="cream"] h3,
+[data-theme="cream"] h4 {
+  color: #0c1a10;
+}
+
+[data-theme="cream"] .prose-wp a {
+  color: #8a7a44;
+}
+[data-theme="cream"] .prose-wp a:hover {
+  color: #0c1a10;
+}
+
+[data-theme="cream"] .prose-wp blockquote {
+  color: #3d4a3e;
+  border-left-color: #a8b87a;
+}
+
+[data-theme="cream"] .prose-wp thead th {
+  color: #4a6a3e;
+}
+[data-theme="cream"] .prose-wp tbody td {
+  color: #3d4a3e;
+}
+
+[data-theme="cream"] .prose-wp pre {
+  background: #e4dcc8;
+  border-color: rgba(106, 138, 90, 0.18);
+  color: #4a6a3e;
+}
+[data-theme="cream"] .prose-wp code {
+  color: #4a6a3e;
+}
+
+[data-theme="cream"] .mono-label {
+  color: #6a8a5a;
+}
+
+[data-theme="cream"] .btn-gold {
+  background: #8a7a44;
+  color: #f2ede0;
+}
+[data-theme="cream"] .btn-gold:hover {
+  background: #6a5a34;
+}
+
+[data-theme="cream"] .btn-outline {
+  border-color: rgba(106, 138, 90, 0.3);
+  color: #4a6a3e;
+}
+[data-theme="cream"] .btn-outline:hover {
+  border-color: #8a7a44;
+  color: #0c1a10;
+}
+
+[data-theme="cream"] .glow-gold {
+  text-shadow: none;
+}
+
+[data-theme="cream"] ::selection {
+  background: rgba(138, 122, 68, 0.2);
+  color: #0c1a10;
+}
+
+[data-theme="cream"] ::-webkit-scrollbar-track {
+  background: #e8e0c8;
+}
+[data-theme="cream"] ::-webkit-scrollbar-thumb {
+  background: #a8b87a;
+}
+
+/* Cream mode text utility classes */
+[data-theme="cream"] .text-cream {
+  color: #0c1a10 !important;
+}
+[data-theme="cream"] .text-cream-soft\/70,
+[data-theme="cream"] .text-cream-soft\/60,
+[data-theme="cream"] .text-cream-soft\/50,
+[data-theme="cream"] .text-cream-soft\/40,
+[data-theme="cream"] .text-cream-soft\/30 {
+  color: rgba(61, 74, 62, 0.8) !important;
+}
+[data-theme="cream"] .text-gold {
+  color: #8a7a44 !important;
+}
+[data-theme="cream"] .text-gold\/60 {
+  color: rgba(138, 122, 68, 0.7) !important;
+}
+
+/* ═══════════════════════════════════════════════
+   Ring & Glow Animations
+   ═══════════════════════════════════════════════ */
+@keyframes ring-draw {
+  0% { stroke-dashoffset: 427; opacity: 0; }
+  20% { opacity: 1; }
+  100% { stroke-dashoffset: 107; opacity: 1; }
+}
+.animate-ring-draw {
+  animation: ring-draw 2s ease-out forwards;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; r: 3; }
+  50% { opacity: 1; r: 5; }
+}
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════
+   Matrix Grid Labels (matching twin3.ai)
+   ═══════════════════════════════════════════════ */
+.matrix-quadrant-label {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  color: #6fdb8f;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(12, 26, 16, 0.9), 0 0 16px rgba(12, 26, 16, 0.7);
+}
+[data-theme="cream"] .matrix-quadrant-label {
+  color: #2d4a35;
+  text-shadow: 0 0 8px rgba(250, 250, 245, 0.9), 0 0 16px rgba(250, 250, 245, 0.7);
+}
+

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ArrowLeft, Linkedin, ExternalLink, GraduationCap } from "lucide-react";
+import { ArrowRight, ArrowLeft, Linkedin, ExternalLink, GraduationCap, Twitter } from "lucide-react";
 import {
   ChapterHeader,
   RevealSection,
@@ -16,7 +16,7 @@ type TeamMember = {
   accent: "gold" | "sage" | "cream";
   paragraph: string;
   bullets: string[];
-  links?: { type: "linkedin" | "scholar" | "external"; url: string; label?: string }[];
+  links?: { type: "linkedin" | "scholar" | "external" | "twitter"; url: string; label?: string }[];
 };
 
 const TEAM: TeamMember[] = [
@@ -34,6 +34,7 @@ const TEAM: TeamMember[] = [
     ],
     links: [
       { type: "linkedin", url: "https://www.linkedin.com/in/cis2042/" },
+      { type: "twitter", url: "https://x.com/cis2042x", label: "X (Twitter)" },
       { type: "scholar", url: "https://scholar.google.com/citations?user=ILHilG8AAAAJ&hl=zh-TW", label: "Google Scholar" },
     ],
   },
@@ -63,7 +64,9 @@ const TEAM: TeamMember[] = [
       "6+ years Web3 growth leadership at Block AI, Munia Protocol, and Momentum Labs",
       "Leads global fundraising, community growth, and ecosystem expansion",
     ],
-    links: [],
+    links: [
+      { type: "twitter", url: "https://x.com/web3eaglealpha", label: "X (Twitter)" },
+    ],
   },
   {
     name: "Tinny",
@@ -152,9 +155,10 @@ function LinkIcon({ link }: { link: NonNullable<TeamMember["links"]>[number] }) 
       style={{ fontSize: "0.7rem", fontFamily: "var(--font-mono)", letterSpacing: "0.04em" }}
     >
       {link.type === "linkedin" && <Linkedin className={iconClass} />}
+      {link.type === "twitter" && <Twitter className={iconClass} />}
       {link.type === "scholar" && <GraduationCap className={iconClass} />}
       {link.type === "external" && <ExternalLink className={iconClass} />}
-      {link.label || (link.type === "linkedin" ? "LinkedIn" : "Link")}
+      {link.label || (link.type === "linkedin" ? "LinkedIn" : link.type === "twitter" ? "X (Twitter)" : "Link")}
     </a>
   );
 }

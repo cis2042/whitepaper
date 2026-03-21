@@ -38,6 +38,14 @@
   color: var(--green-deep);
   text-decoration: none; letter-spacing: 0.15em;
 }
+.nav-logo-svg {
+  animation: nav-logo-spin 12s linear infinite;
+  transform-origin: center center;
+}
+@keyframes nav-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
 .nav-links a {
   font-family: var(--font-mono); font-size: 0.68rem;
@@ -90,16 +98,29 @@ body.dark .nav-rootdata-logo:hover img { opacity: 1; }
 body.dark .theme-toggle { border-color: rgba(168, 184, 122, 0.2); color: #8a8468; }
 body.dark .theme-toggle:hover { color: #d4c89a; border-color: rgba(212, 200, 154, 0.3); }
 
+/* ── Hamburger Button (mobile only) ── */
+.nav-hamburger {
+  display: none; /* hidden on desktop */
+  align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 6px;
+  background: none; border: none;
+  color: var(--text-muted); cursor: pointer;
+  transition: color 0.3s; margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+.nav-hamburger:hover { color: var(--green-forest); }
+.nav-hamburger svg { width: 20px; height: 20px; }
+
+body.dark .nav-hamburger { color: #8a8468; }
+body.dark .nav-hamburger:hover { color: #d4c89a; }
+
 /* ── Mobile ── */
 @media (max-width: 900px) {
   .nav-links a:not(.nav-cta) { display: none; }
-  .nav-social { margin-left: 0.5rem; gap: 0.4rem; }
-  .nav-social a { width: 26px; height: 26px; }
-  .nav-social svg { width: 14px; height: 14px; }
+  .nav-social { display: none; }
   .nav { padding: 0.8rem 1rem; }
   .theme-toggle { width: 26px; height: 26px; margin-left: 0.3rem; }
   .theme-toggle svg { width: 12px; height: 12px; }
   .nav-element-logo img { width: 16px; height: 16px; }
-  .nav-hamburger { display: flex; width: 26px; height: 26px; margin-left: 0.3rem; }
-  .nav-hamburger svg { width: 14px; height: 14px; }
+  .nav-hamburger { display: flex; }
 }

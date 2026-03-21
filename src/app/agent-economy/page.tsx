@@ -219,17 +219,17 @@ export default function AgentEconomy() {
       <ScrollNarrative>
         <div className="glass-panel rounded-lg p-6 my-8 border" style={{ borderColor: "rgba(212,200,154,0.15)" }}>
           <p className="mono-label text-[0.5rem] text-gold/60 mb-4">PERSONAL AGENT CAPABILITIES</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3">
             {[
-              { icon: "🔑", label: "Independent EVM Wallet", desc: "Receive, spend, and accumulate assets autonomously" },
-              { icon: "🧬", label: "256D SBT Authorization", desc: "Acts as proxy for your preferences with granular scope control" },
-              { icon: "🤖", label: "ERC-8004 On-Chain Identity", desc: "Discoverable by other agents across protocols" },
-              { icon: "📱", label: "Telegram Integration", desc: "Real-time interaction and approval from your messenger" },
-              { icon: "📊", label: "Reputation Accumulation", desc: "More completed tasks = higher reputation = better opportunities" },
+              { icon: <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>, label: "Independent EVM Wallet", desc: "Receive, spend, and accumulate assets autonomously" },
+              { icon: <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>, label: "256D SBT Authorization", desc: "Acts as proxy for your preferences with granular scope control" },
+              { icon: <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>, label: "ERC-8004 On-Chain Identity", desc: "Discoverable by other agents across protocols" },
+              { icon: <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>, label: "Telegram Integration", desc: "Real-time interaction and approval from your messenger" },
+              { icon: <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>, label: "Reputation Accumulation", desc: "More completed tasks = higher reputation = better opportunities" },
             ].map((cap) => (
               <div key={cap.label} className="flex items-start gap-3 p-3 rounded-md" style={{ background: "rgba(168,184,122,0.04)" }}>
-                <span className="text-lg shrink-0">{cap.icon}</span>
-                <div>
+                <span className="shrink-0 text-gold/70 mt-0.5">{cap.icon}</span>
+                <div className="min-w-0">
                   <span className="font-heading text-cream text-[0.78rem] block">{cap.label}</span>
                   <span className="text-[0.65rem] text-cream-soft/50">{cap.desc}</span>
                 </div>
@@ -413,55 +413,56 @@ export default function AgentEconomy() {
       </ScrollNarrative>
 
       <ScrollNarrative>
-        <div className="glass-panel rounded-lg p-5 my-8 overflow-x-auto">
+        {/* Desktop table */}
+        <div className="hidden sm:block glass-panel rounded-lg p-5 my-8 overflow-x-auto">
           <table className="w-full text-[0.72rem]">
             <thead>
               <tr className="border-b" style={{ borderColor: "rgba(168,184,122,0.2)" }}>
                 <th className="text-left py-2 text-cream-soft/40 font-normal mono-label text-[0.5rem]"></th>
-                <th className="text-left py-2 text-cream-soft/40 font-normal mono-label text-[0.5rem]">WEB2 PLATFORMS</th>
-                <th className="text-left py-2 text-cream-soft/40 font-normal mono-label text-[0.5rem]">WEB3 TOKENS</th>
-                <th className="text-left py-2 font-normal mono-label text-[0.5rem] text-gold">TWIN3 RWA</th>
+                <th className="text-left py-2 text-cream-soft/40 font-normal mono-label text-[0.5rem]">WEB2</th>
+                <th className="text-left py-2 text-cream-soft/40 font-normal mono-label text-[0.5rem]">WEB3</th>
+                <th className="text-left py-2 font-normal mono-label text-[0.5rem] text-gold">TWIN3</th>
               </tr>
             </thead>
             <tbody className="text-cream-soft/60">
-              <tr className="border-b" style={{ borderColor: "rgba(168,184,122,0.06)" }}>
-                <td className="py-2.5 text-cream-soft/40 mono-label text-[0.5rem]">USER ROLE</td>
-                <td className="py-2.5">Product (consumed)</td>
-                <td className="py-2.5">Speculator (buy & hold)</td>
-                <td className="py-2.5 text-cream">Economic Node (produces)</td>
-              </tr>
-              <tr className="border-b" style={{ borderColor: "rgba(168,184,122,0.06)" }}>
-                <td className="py-2.5 text-cream-soft/40 mono-label text-[0.5rem]">INCOME</td>
-                <td className="py-2.5">None</td>
-                <td className="py-2.5">Token price volatility</td>
-                <td className="py-2.5 text-cream">5-layer real revenue</td>
-              </tr>
-              <tr className="border-b" style={{ borderColor: "rgba(168,184,122,0.06)" }}>
-                <td className="py-2.5 text-cream-soft/40 mono-label text-[0.5rem]">DATA</td>
-                <td className="py-2.5">Platform-owned</td>
-                <td className="py-2.5">No data layer</td>
-                <td className="py-2.5 text-cream">User SBT — self-sovereign</td>
-              </tr>
-              <tr className="border-b" style={{ borderColor: "rgba(168,184,122,0.06)" }}>
-                <td className="py-2.5 text-cream-soft/40 mono-label text-[0.5rem]">PRIVACY</td>
-                <td className="py-2.5">Fully exposed</td>
-                <td className="py-2.5">N/A</td>
-                <td className="py-2.5 text-cream">Vector never exposes raw values</td>
-              </tr>
-              <tr className="border-b" style={{ borderColor: "rgba(168,184,122,0.06)" }}>
-                <td className="py-2.5 text-cream-soft/40 mono-label text-[0.5rem]">AGENT</td>
-                <td className="py-2.5">Does not exist</td>
-                <td className="py-2.5">Does not exist</td>
-                <td className="py-2.5 text-cream">Full-time economic proxy</td>
-              </tr>
-              <tr>
-                <td className="py-2.5 text-cream-soft/40 mono-label text-[0.5rem]">SUSTAINABILITY</td>
-                <td className="py-2.5">Platform profit-driven</td>
-                <td className="py-2.5">Token inflation dependent</td>
-                <td className="py-2.5 text-cream">Real commercial value flow</td>
-              </tr>
+              {[
+                ["USER ROLE", "Product (consumed)", "Speculator", "Economic Node"],
+                ["INCOME", "None", "Token volatility", "5-layer real revenue"],
+                ["DATA", "Platform-owned", "No data layer", "User SBT \u2014 sovereign"],
+                ["PRIVACY", "Fully exposed", "N/A", "Vector never exposes raw"],
+                ["AGENT", "Does not exist", "Does not exist", "Full-time proxy"],
+                ["SUSTAIN", "Platform profit", "Token inflation", "Real value flow"],
+              ].map((row, i) => (
+                <tr key={i} className="border-b" style={{ borderColor: "rgba(168,184,122,0.06)" }}>
+                  <td className="py-2.5 text-cream-soft/40 mono-label text-[0.5rem] pr-2">{row[0]}</td>
+                  <td className="py-2.5 pr-2">{row[1]}</td>
+                  <td className="py-2.5 pr-2">{row[2]}</td>
+                  <td className="py-2.5 text-cream">{row[3]}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile cards */}
+        <div className="sm:hidden space-y-3 my-8">
+          {[
+            ["USER ROLE", "Product (consumed)", "Speculator (buy & hold)", "Economic Node (produces)"],
+            ["INCOME", "None", "Token price volatility", "5-layer real revenue"],
+            ["DATA", "Platform-owned", "No data layer", "User SBT \u2014 self-sovereign"],
+            ["PRIVACY", "Fully exposed", "N/A", "Vector never exposes raw values"],
+            ["AGENT", "Does not exist", "Does not exist", "Full-time economic proxy"],
+            ["SUSTAINABILITY", "Platform profit-driven", "Token inflation dependent", "Real commercial value flow"],
+          ].map((row, i) => (
+            <div key={i} className="glass-panel rounded-lg p-4">
+              <p className="mono-label text-[0.5rem] text-cream-soft/40 mb-2">{row[0]}</p>
+              <div className="space-y-1.5 text-[0.72rem]">
+                <div className="flex justify-between gap-2"><span className="text-cream-soft/40 shrink-0">Web2</span><span className="text-cream-soft/60 text-right">{row[1]}</span></div>
+                <div className="flex justify-between gap-2"><span className="text-cream-soft/40 shrink-0">Web3</span><span className="text-cream-soft/60 text-right">{row[2]}</span></div>
+                <div className="flex justify-between gap-2"><span className="text-gold/60 shrink-0">twin3</span><span className="text-cream font-medium text-right">{row[3]}</span></div>
+              </div>
+            </div>
+          ))}
         </div>
       </ScrollNarrative>
 

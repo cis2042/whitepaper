@@ -95,29 +95,22 @@ export function TopHeader() {
   return (
     <>
       <nav className="nav">
-        {/* Global hamburger — left side, same as homepage */}
-        <button
-          className="nav-hamburger"
-          onClick={() => setGlobalOpen(true)}
-          aria-label="Open menu"
-        >
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" style={{ pointerEvents: "none" }}><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        </button>
+        <div className="nav-left" style={{ display: "flex", alignItems: "center" }}>
+          {/* Global hamburger — left side, same as homepage */}
+          <button
+            className="nav-hamburger"
+            onClick={() => setGlobalOpen(true)}
+            aria-label="Open menu"
+          >
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" style={{ pointerEvents: "none" }}><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          </button>
 
-        {/* Logo */}
-        <a href="https://twin3.ai" className="nav-logo" aria-label="twin3">
-          <svg viewBox="0 0 32 32" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" strokeWidth="1"/>
-            <rect x="0" y="0" width="16" height="32" fill="currentColor" clipPath="url(#wpNavClip)"/>
-            <clipPath id="wpNavClip"><circle cx="16" cy="16" r="15"/></clipPath>
-            <rect x="5" y="13" width="6" height="6" fill="var(--cream,#fafaf5)"/>
-            <rect x="21" y="13" width="6" height="6" fill="currentColor"/>
-            <circle cx="16" cy="16" r="2" fill="currentColor"/>
-            <circle cx="16" cy="16" r="2" fill="var(--cream,#fafaf5)" clipPath="url(#wpNavClipL)"/>
-            <clipPath id="wpNavClipL"><rect x="0" y="0" width="16" height="32"/></clipPath>
-          </svg>
-          <span style={{ marginLeft: "0.5rem" }}>twin3</span>
-        </a>
+          {/* Logo */}
+          <a href="https://twin3.ai" className="nav-logo" aria-label="twin3">
+            <svg className="nav-logo-svg" viewBox="0 0 32 32" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" strokeWidth="1"/><rect x="0" y="0" width="16" height="32" rx="0" fill="currentColor" clipPath="url(#navLogoClip)"/><clipPath id="navLogoClip"><circle cx="16" cy="16" r="15"/></clipPath><rect x="5" y="13" width="6" height="6" fill="var(--cream, #fafaf5)"/><rect x="21" y="13" width="6" height="6" fill="currentColor"/><circle cx="16" cy="16" r="2" fill="currentColor"/><circle cx="16" cy="16" r="2" fill="var(--cream, #fafaf5)" clipPath="url(#navLogoClipLeft)"/><clipPath id="navLogoClipLeft"><rect x="0" y="0" width="16" height="32"/></clipPath></svg>
+            <span style={{ marginLeft: "0.5rem" }}>twin3</span>
+          </a>
+        </div>
 
         {/* Nav Links */}
         <ul className="nav-links">
@@ -162,12 +155,12 @@ export function TopHeader() {
           position: "fixed", bottom: 24, right: 20, zIndex: 100,
           display: "flex", alignItems: "center", gap: "0.4rem",
           padding: "0.6rem 1rem", borderRadius: 24,
-          background: isDark ? "rgba(10,22,16,0.9)" : "rgba(250,250,245,0.9)",
+          background: isDark ? "rgba(250,250,245,0.95)" : "rgba(10,22,16,0.95)",
           backdropFilter: "blur(12px)",
-          border: `1px solid ${isDark ? "rgba(168,184,122,0.2)" : "rgba(74,124,89,0.15)"}`,
-          boxShadow: isDark ? "0 4px 20px rgba(0,0,0,0.4)" : "0 4px 20px rgba(0,0,0,0.1)",
+          border: isDark ? "1px solid rgba(74,124,89,0.15)" : "1px solid rgba(168,184,122,0.2)",
+          boxShadow: isDark ? "0 4px 20px rgba(250,250,245,0.2)" : "0 4px 20px rgba(0,0,0,0.4)",
           cursor: "pointer",
-          color: isDark ? "#d4c89a" : "var(--green-deep)",
+          color: isDark ? "var(--green-deep)" : "#d4c89a",
           fontFamily: "var(--font-mono)", fontSize: "0.7rem", letterSpacing: "0.06em",
         }}
       >

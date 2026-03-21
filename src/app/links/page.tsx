@@ -51,6 +51,8 @@ export default function EcosystemLinks() {
               { label: "X (Twitter)", url: "https://x.com/twin3_ai" },
               { label: "Telegram", url: "https://t.me/twin3_ai" },
               { label: "LinkedIn", url: "https://www.linkedin.com/company/twin3-ai/" },
+              { label: "Medium", url: "https://medium.com/@twin3ai" },
+              { label: "GitHub", url: "https://github.com/twin3-ai" },
             ].map((s, i) => (
               <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" className="glass-panel rounded-lg p-4 text-center !no-underline hover:border-gold/30 transition-colors group block">
                 <span className="font-heading text-cream text-sm group-hover:text-gold transition-colors">{s.label}</span>

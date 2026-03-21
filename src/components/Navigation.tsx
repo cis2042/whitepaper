@@ -75,6 +75,7 @@ const SIDEBAR_NAV: NavItem[] = [
   { path: "/investment", title: "Investment Opportunity" },
   { path: "/go-to-market", title: "Go-to-Market Strategy" },
   { path: "/roadmap", title: "Development Roadmap" },
+  { path: "/team", title: "Core Team" },
   { path: "/competitive", title: "Competitive Advantages" },
   { path: "/conclusion", title: "Conclusion & References" },
   { path: "/links", title: "Ecosystem Links" },

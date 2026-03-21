@@ -199,6 +199,16 @@ export function TopHeader() {
           </a>
         </div>
 
+        {/* Hamburger — visible below lg, inside nav flow */}
+        <button
+          className="lg:hidden"
+          onClick={() => setMobileOpen(true)}
+          aria-label="Open chapter menu"
+          style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 32, height: 32, borderRadius: 6, background: "none", border: "1px solid rgba(168,184,122,0.2)", cursor: "pointer", color: "var(--text-muted)", marginLeft: "0.5rem" }}
+        >
+          <Menu className="w-4 h-4" />
+        </button>
+
         {/* Theme Toggle — square button same as homepage */}
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle dark mode">
           <svg className="icon-moon" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ display: isDark ? "none" : "block" }}>
@@ -240,15 +250,6 @@ export function TopHeader() {
         )}
       </AnimatePresence>
 
-      {/* Mobile/tablet hamburger — visible below lg breakpoint */}
-      <button
-        className="lg:hidden"
-        onClick={() => setMobileOpen(true)}
-        aria-label="Open chapter menu"
-        style={{ position: "fixed", top: "0.75rem", right: "1rem", zIndex: 101, padding: "0.375rem", background: "none", border: "none", cursor: "pointer", color: "var(--text-muted)" }}
-      >
-        <Menu className="w-5 h-5" />
-      </button>
     </>
   );
 }

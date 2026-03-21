@@ -211,14 +211,14 @@ export function TopHeader() {
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-[110] lg:hidden"
-            style={{ background: "rgba(6,14,8,0.95)", backdropFilter: "blur(8px)" }}
+            style={{ background: "var(--drawer-overlay, rgba(6,14,8,0.85))", backdropFilter: "blur(8px)" }}
             onClick={() => setChapterOpen(false)}
           >
             <motion.div
               initial={{ x: "-100%" }} animate={{ x: 0 }} exit={{ x: "-100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="absolute left-0 top-0 bottom-0 w-[280px] overflow-y-auto p-6 pt-5"
-              style={{ background: "#0a1610", borderRight: "1px solid rgba(168,184,122,0.12)" }}
+              style={{ background: "var(--sidebar-bg, #0a1610)", borderRight: "1px solid var(--sidebar-border, rgba(168,184,122,0.12))" }}
               onClick={(e) => e.stopPropagation()}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
@@ -275,10 +275,10 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
                 href={item.path}
                 onClick={onNavigate}
                 className={clsx(
-                  "flex-1 block px-3 py-1.5 rounded transition-colors leading-snug",
+                  "flex-1 block px-3 py-1.5 rounded transition-colors leading-snug sidebar-link",
                   isActive
-                    ? "text-gold bg-gold/10"
-                    : "text-cream-soft/70 hover:text-cream hover:bg-cream/5"
+                    ? "sidebar-link-active"
+                    : "sidebar-link-idle"
                 )}
               >
                 {item.title}
@@ -310,8 +310,8 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
                       className={clsx(
                         "block px-2 py-1 rounded text-[0.72rem] transition-colors leading-snug",
                         childActive
-                          ? "text-gold/80"
-                          : "text-cream-soft/50 hover:text-cream-soft"
+                          ? "sidebar-link-active"
+                          : "sidebar-link-idle"
                       )}
                     >
                       {child.title}

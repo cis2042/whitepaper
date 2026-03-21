@@ -25,6 +25,14 @@
 :root {
   --background: #0c1a10;
   --foreground: #e8e0c8;
+  --sidebar-bg: #0a1610;
+  --sidebar-border: rgba(168, 184, 122, 0.12);
+  --drawer-overlay: rgba(6, 14, 8, 0.85);
+  --sidebar-text: #bfb89a;
+  --sidebar-text-hover: #e8e0c8;
+  --sidebar-active-text: #d4c89a;
+  --sidebar-active-bg: rgba(212, 200, 154, 0.1);
+  --text-muted: #7a7a7a;
 }
 
 html {
@@ -227,6 +235,13 @@ h1, h2, h3, h4 {
   --background: #fafaf5;
   --foreground: #1a2a1e;
   --sidebar-bg: #f0efe8;
+  --sidebar-border: rgba(106, 138, 90, 0.2);
+  --drawer-overlay: rgba(240, 239, 232, 0.88);
+  --sidebar-text: #4a5a40;
+  --sidebar-text-hover: #1a2a1e;
+  --sidebar-active-text: #2d4a35;
+  --sidebar-active-bg: rgba(106, 138, 90, 0.12);
+  --text-muted: #7a8a70;
 }
 
 [data-theme="cream"] body {
@@ -421,4 +436,18 @@ h1, h2, h3, h4 {
   .prose-wp .relative svg {
     max-width: 100%;
   }
+}
+
+/* ── Sidebar link styles (theme-aware) ── */
+.sidebar-link-idle {
+  color: var(--sidebar-text);
+}
+.sidebar-link-idle:hover {
+  color: var(--sidebar-text-hover);
+  background: var(--sidebar-active-bg);
+}
+.sidebar-link-active {
+  color: var(--sidebar-active-text);
+  background: var(--sidebar-active-bg);
+  font-weight: 600;
 }

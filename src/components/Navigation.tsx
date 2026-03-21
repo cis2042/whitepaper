@@ -9,6 +9,31 @@ import clsx from "clsx";
 import { Twin3Logo } from "@/components/MatrixAnimations";
 import { useTheme } from "@/components/ThemeProvider";
 
+/* ── SVG Social Icons (matching twin3.ai homepage) ── */
+const XIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <path d="M4 4l6.5 8L4 20h2l5.5-6.8L16 20h4l-6.8-8.5L20 4h-2l-5.2 6.3L8 4H4z"/>
+  </svg>
+);
+const TelegramIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <path d="M21 3L1 11l7 2.5M21 3l-9 15-3-6.5M21 3L8 13.5"/>
+    <path d="M8 13.5V20l3.5-3.5"/>
+  </svg>
+);
+const DiscordIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[18px] h-[18px]">
+    <circle cx="9.5" cy="12" r="1.2"/><circle cx="14.5" cy="12" r="1.2"/>
+    <path d="M8.5 17s1.5 2 3.5 2 3.5-2 3.5-2"/>
+    <path d="M20 8a16 16 0 0 0-4-1.3l-.5 1a12 12 0 0 0-7 0l-.5-1A16 16 0 0 0 4 8a17 17 0 0 0-2.5 10a16 16 0 0 0 5 2.5l1-1.8a10 10 0 0 1-3-1.4l.6-.5a11 11 0 0 0 9.8 0l.6.5a10 10 0 0 1-3 1.4l1 1.8a16 16 0 0 0 5-2.5A17 17 0 0 0 20 8z"/>
+  </svg>
+);
+const ElementIcon = () => (
+  <svg viewBox="0 0 20 20" className="w-[18px] h-[18px] opacity-60 hover:opacity-100 transition-opacity">
+    <image href="https://twin3.ai/assets/img/Element_logo.svg" width="20" height="20" />
+  </svg>
+);
+
 /* ── twin3.ai-matching top header nav items ── */
 const SITE_NAV = [
   { href: "https://twin3.ai/#stage1", label: "Soul" },
@@ -19,10 +44,10 @@ const SITE_NAV = [
 ];
 
 const SOCIALS = [
-  { href: "https://x.com/twin3_ai", icon: "𝕏", title: "X" },
-  { href: "https://t.me/twin3_ai", icon: "✈", title: "Telegram" },
-  { href: "https://discord.gg/twin3", icon: "⌘", title: "Discord" },
-  { href: "https://element.market/collections/twin-matrix", icon: "◉", title: "Element" },
+  { href: "https://x.com/twin3_ai", icon: <XIcon />, title: "X" },
+  { href: "https://t.me/twin3ai", icon: <TelegramIcon />, title: "Telegram" },
+  { href: "https://discord.gg/H27SmfQ7", icon: <DiscordIcon />, title: "Discord" },
+  { href: "https://element.market/collections/twin3-1?search[toggles][0]=ALL", icon: <ElementIcon />, title: "Element" },
 ];
 
 /* ── GitBook-style sidebar nav items ── */
@@ -79,155 +104,155 @@ const SIDEBAR_NAV: NavItem[] = [
   { path: "/links", title: "Ecosystem Links" },
 ];
 
-/* ── Top Header (matches twin3.ai) ── */
+/* ── Top Header — pixel-perfect match to twin3.ai nav ── */
 export function TopHeader() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { theme, toggle: toggleTheme } = useTheme();
+  const isDark = theme === "dark";
 
+  // Sync body.dark so home-nav.css dark-mode selectors work
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    document.body.classList.toggle("dark", isDark);
+  }, [isDark]);
 
   return (
-    <header
-      className={clsx(
-        "fixed top-0 left-0 right-0 z-[60] transition-all duration-300",
-        scrolled
-          ? "backdrop-blur-xl bg-base-deep/80 shadow-lg"
-          : "backdrop-blur-sm bg-base-deep/40"
-      )}
-      style={{ borderBottom: "1px solid rgba(168,184,122,0.12)" }}
-    >
-      <div className="max-w-screen-xl mx-auto flex items-center justify-between px-5 h-14">
-        {/* Logo */}
-        <Link href="https://twin3.ai" className="flex items-center gap-2 shrink-0">
-          <Twin3Logo size={26} />
-          <span className="font-mono text-sm font-medium text-cream tracking-wide">twin3</span>
-        </Link>
+    <>
+      <nav className="nav">
+        {/* Logo — identical SVG to homepage */}
+        <a href="https://twin3.ai" className="nav-logo" aria-label="twin3">
+          <svg viewBox="0 0 32 32" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" strokeWidth="1"/>
+            <rect x="0" y="0" width="16" height="32" fill="currentColor" clipPath="url(#wpNavClip)"/>
+            <clipPath id="wpNavClip"><circle cx="16" cy="16" r="15"/></clipPath>
+            <rect x="5" y="13" width="6" height="6" fill="var(--cream,#fafaf5)"/>
+            <rect x="21" y="13" width="6" height="6" fill="currentColor"/>
+            <circle cx="16" cy="16" r="2" fill="currentColor"/>
+            <circle cx="16" cy="16" r="2" fill="var(--cream,#fafaf5)" clipPath="url(#wpNavClipL)"/>
+            <clipPath id="wpNavClipL"><rect x="0" y="0" width="16" height="32"/></clipPath>
+          </svg>
+          <span style={{ marginLeft: "0.5rem" }}>twin3</span>
+        </a>
 
-        {/* Desktop Center Nav */}
-        <nav className="hidden md:flex items-center gap-1">
-          {SITE_NAV.map((item) =>
-            item.internal ? (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="mono-label text-[0.6rem] px-3 py-1.5 text-gold hover:text-cream transition-colors"
-              >
-                {item.label}
-              </Link>
-            ) : (
-              <a
-                key={item.label}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mono-label text-[0.6rem] px-3 py-1.5 text-cream-soft/60 hover:text-cream transition-colors"
-              >
-                {item.label}
-              </a>
-            )
-          )}
-        </nav>
+        {/* Nav Links — Title Case, same as homepage */}
+        <ul className="nav-links">
+          <li><a href="/holders/">Dashboard</a></li>
+          <li><a href="/whitepaper/" style={{ color: "var(--green-forest,#a8b87a)" }}>Whitepaper</a></li>
+        </ul>
 
-        {/* Desktop Right: socials + theme toggle */}
-        <div className="hidden md:flex items-center gap-3">
-          {SOCIALS.map((s) => (
-            <a
-              key={s.title}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cream-soft/40 hover:text-cream transition-colors text-sm"
-              title={s.title}
-            >
-              {s.icon}
-            </a>
-          ))}
-          <button
-            onClick={toggleTheme}
-            className="ml-2 p-1.5 rounded-full text-cream-soft/40 hover:text-cream transition-colors border border-cream-soft/10 hover:border-cream-soft/30"
-            aria-label="Toggle theme"
-            title={theme === "dark" ? "Switch to cream mode" : "Switch to dark mode"}
+        {/* Social Icons — same SVGs as homepage */}
+        <div className="nav-social">
+          <a href="https://x.com/twin3_ai" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M4 4l6.5 8L4 20h2l5.5-6.8L16 20h4l-6.8-8.5L20 4h-2l-5.2 6.3L8 4H4z"/>
+            </svg>
+          </a>
+          <a href="https://t.me/twin3ai" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M21 3L1 11l7 2.5M21 3l-9 15-3-6.5M21 3L8 13.5"/>
+              <path d="M8 13.5V20l3.5-3.5"/>
+            </svg>
+          </a>
+          <a href="https://discord.gg/H27SmfQ7" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="9.5" cy="12" r="1.2"/><circle cx="14.5" cy="12" r="1.2"/>
+              <path d="M8.5 17s1.5 2 3.5 2 3.5-2 3.5-2"/>
+              <path d="M20 8a16 16 0 0 0-4-1.3l-.5 1a12 12 0 0 0-7 0l-.5-1A16 16 0 0 0 4 8a17 17 0 0 0-2.5 10a16 16 0 0 0 5 2.5l1-1.8a10 10 0 0 1-3-1.4l.6-.5a11 11 0 0 0 9.8 0l.6.5a10 10 0 0 1-3 1.4l1 1.8a16 16 0 0 0 5-2.5A17 17 0 0 0 20 8z"/>
+            </svg>
+          </a>
+          {/* Element Market — img tag same as homepage */}
+          <a
+            href="https://element.market/collections/twin3-1?search[toggles][0]=ALL"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Element Market"
+            className="nav-element-logo"
           >
-            {theme === "dark" ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
-          </button>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://twin3.ai/assets/img/Element_logo.svg"
+              alt="Element Market"
+              width="20"
+              height="20"
+              style={{
+                filter: isDark ? "none" : "invert(1)",
+                opacity: isDark ? 0.7 : 0.55,
+                transition: "opacity 0.3s",
+              }}
+            />
+          </a>
+          {/* RootData — img tag same as homepage */}
+          <a
+            href="https://www.rootdata.com/Projects/detail/twin3?k=MjM5OTg%3D"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="RootData"
+            className="nav-rootdata-logo"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://play-lh.googleusercontent.com/rlk1k8nJeucxid8UCuS_3cvg2BSdC8Gz2RtJFQwAbsAer2Lk6VxxbROqzReNS4O0zfby=w480-h960-rw"
+              alt="RootData"
+              width="20"
+              height="20"
+              style={{ borderRadius: "4px", opacity: 0.7, transition: "opacity 0.3s" }}
+            />
+          </a>
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden p-1.5 text-cream-soft/60 hover:text-cream"
-          onClick={() => setMobileOpen(true)}
-        >
-          <Menu className="w-5 h-5" />
+        {/* Theme Toggle — square button same as homepage */}
+        <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle dark mode">
+          <svg className="icon-moon" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ display: isDark ? "none" : "block" }}>
+            <path d="M13.5 8.5a5.5 5.5 0 1 1-6-6 4 4 0 0 0 6 6z"/>
+          </svg>
+          <svg className="icon-sun" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ display: isDark ? "block" : "none" }}>
+            <circle cx="8" cy="8" r="3"/>
+            <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.5 3.5l1.4 1.4M11.1 11.1l1.4 1.4M3.5 12.5l1.4-1.4M11.1 4.9l1.4-1.4"/>
+          </svg>
         </button>
-      </div>
+      </nav>
 
-      {/* Mobile Full Drawer */}
+      {/* Mobile Drawer (chapters) */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[70] bg-base-deep/95 backdrop-blur-md md:hidden"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[110] lg:hidden"
+            style={{ background: "rgba(6,14,8,0.95)", backdropFilter: "blur(8px)" }}
             onClick={() => setMobileOpen(false)}
           >
             <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
+              initial={{ x: "-100%" }} animate={{ x: 0 }} exit={{ x: "-100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="absolute left-0 top-0 bottom-0 w-[280px] overflow-y-auto p-6 pt-5"
-              style={{ background: "var(--sidebar-bg, #0a1610)", borderRight: "1px solid rgba(168,184,122,0.12)" }}
+              style={{ background: "#0a1610", borderRight: "1px solid rgba(168,184,122,0.12)" }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex justify-between items-center mb-6">
-                <Link href="https://twin3.ai" className="font-heading text-lg text-cream">twin3</Link>
-                <button onClick={() => setMobileOpen(false)} className="p-1 text-cream-soft/40 hover:text-cream">
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
+                <a href="https://twin3.ai" className="nav-logo">twin3</a>
+                <button onClick={() => setMobileOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-muted)" }}>
                   <X className="w-4 h-4" />
                 </button>
               </div>
-
-              {/* Site Nav */}
-              <div className="mb-6 pb-4 border-b" style={{ borderColor: "rgba(168,184,122,0.12)" }}>
-                {SITE_NAV.map((item) =>
-                  item.internal ? (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="block mono-label text-[0.6rem] text-gold py-2"
-                    >
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block mono-label text-[0.6rem] text-cream-soft/60 py-2"
-                    >
-                      {item.label} ↗
-                    </a>
-                  )
-                )}
-              </div>
-
-              {/* Sidebar chapters */}
-              <p className="mono-label text-[0.5rem] text-cream-soft/30 mb-3">CHAPTERS</p>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.5rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "0.75rem" }}>CHAPTERS</p>
               <SidebarContent onNavigate={() => setMobileOpen(false)} />
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+
+      {/* Mobile/tablet hamburger — visible below lg breakpoint */}
+      <button
+        className="lg:hidden"
+        onClick={() => setMobileOpen(true)}
+        aria-label="Open chapter menu"
+        style={{ position: "fixed", top: "0.75rem", right: "1rem", zIndex: 101, padding: "0.375rem", background: "none", border: "none", cursor: "pointer", color: "var(--text-muted)" }}
+      >
+        <Menu className="w-5 h-5" />
+      </button>
+    </>
   );
 }
+
 
 /* ── Left Sidebar (GitBook-style, desktop only) ── */
 function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {

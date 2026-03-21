@@ -26,7 +26,7 @@ export default function EcosystemLinks() {
               { label: "Main Website", url: "https://twin3.ai", desc: "Brand & vision" },
               { label: "Proof-of-Humanity", url: "https://humanity.twin3.ai", desc: "Verification SDK" },
               { label: "SBT Dashboard", url: "https://holders.twin3.ai", desc: "On-chain analytics" },
-              { label: "Pitch Deck", url: "https://link.uxerlab.com/deck", desc: "Investor materials" },
+              /* Pitch Deck removed — not publicly available */
               { label: "BNBScan Contract", url: "https://bscscan.com/token/0xe3ec133e29addfbba26a412c38ed5de37195156f", desc: "ERC-5192 SBT" },
               { label: "IEEE Publication", url: "https://ieeexplore.ieee.org/document/10734204", desc: "Academic reference" },
             ].map((link, i) => (

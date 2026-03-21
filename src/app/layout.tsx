@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, EB_Garamond, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import "./home-nav.css";
 import { TopHeader, Sidebar } from "@/components/Navigation";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
@@ -16,18 +17,19 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} ${ebGaramond.variable} ${jetbrainsMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col relative">
+      <body className="min-h-full flex flex-col relative overflow-x-hidden">
         <ThemeProvider>
           <div className="hex-matrix-bg" />
           <TopHeader />
-          <div className="flex flex-1 pt-14">
+          <div className="flex flex-1 pt-[72px]">
             <Sidebar />
             <main className="flex-1 lg:ml-[260px] min-h-screen">
               <div className="max-w-[48rem] mx-auto px-6 sm:px-10 pt-8 lg:pt-10 pb-16">
                 {children}
               </div>
-              <footer className="border-t py-6 text-center" style={{ borderColor: "rgba(168,184,122,0.12)" }}>
-                <p className="mono-label text-cream-soft/40">&copy; 2026 twin3 AI Limited</p>
+              <footer style={{ borderTop: "1px solid rgba(168,184,122,0.12)", padding: "1.5rem 0", textAlign: "center", fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "var(--text-muted)", letterSpacing: "0.04em" }}>
+                © 2026 Twin Matrix · twin3.ai · Building the Identity Rail for the Agent Economy<br />
+                Contact us: <a href="mailto:wen@twin3.ai" style={{ color: "inherit", textDecoration: "underline" }}>wen@twin3.ai</a>
               </footer>
             </main>
           </div>

@@ -16,6 +16,8 @@
   --color-foreground: #e8e0c8;
 
   --font-heading: var(--font-eb-garamond);
+  --font-serif: var(--font-eb-garamond);
+  --font-body: var(--font-eb-garamond);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 }
@@ -27,15 +29,17 @@
 
 html {
   font-size: 120%;
+  overflow-x: hidden;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-heading), Georgia, serif;
   line-height: 1.75;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 /* Headings use EB Garamond */
@@ -191,6 +195,9 @@ h1, h2, h3, h4 {
   font-size: 0.85rem;
   border-collapse: collapse;
   margin: 1.5em 0;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .prose-wp thead th {
   font-family: var(--font-mono), monospace;

@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 import Link from "next/link";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import {
@@ -12,6 +14,17 @@ import {
 import { MatrixGrid } from "@/components/MatrixGrid";
 
 export default function HumanIntelligence() {
+  const [globalRank, setGlobalRank] = useState(7);
+  const [chainRank, setChainRank] = useState(2);
+  useEffect(() => {
+    fetch("https://holders.twin3.ai/api/public/all")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d?.overview?.ranking?.global_sbt_rank) setGlobalRank(d.overview.ranking.global_sbt_rank);
+        if (d?.overview?.ranking?.chain_rank) setChainRank(d.overview.ranking.chain_rank);
+      })
+      .catch(() => {});
+  }, []);
   return (
     <article className="prose-wp">
       <ChapterHeader
@@ -310,9 +323,9 @@ export default function HumanIntelligence() {
 
         <RevealItem>
           <p>
-            twin3 currently ranks <strong className="text-cream">#7 globally</strong> among all SBT
+            twin3 currently ranks <strong className="text-cream">#{globalRank} globally</strong> among all SBT
             projects by holder count, and{" "}
-            <strong className="text-cream">#2 on BNB Chain</strong>, second only to Binance&apos;s
+            <strong className="text-cream">#{chainRank} on BNB Chain</strong>, second only to Binance&apos;s
             own BAB Token — validation that the market recognizes the need for richer, more
             meaningful on-chain identity.
           </p>

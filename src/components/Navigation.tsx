@@ -46,7 +46,7 @@ const SITE_NAV = [
 const SOCIALS = [
   { href: "https://x.com/twin3_ai", icon: <XIcon />, title: "X" },
   { href: "https://t.me/twin3ai", icon: <TelegramIcon />, title: "Telegram" },
-  { href: "https://discord.gg/H27SmfQ7", icon: <DiscordIcon />, title: "Discord" },
+  { href: "https://discord.gg/dJspUX6SQJ", icon: <DiscordIcon />, title: "Discord" },
   { href: "https://element.market/collections/twin3-1?search[toggles][0]=ALL", icon: <ElementIcon />, title: "Element" },
 ];
 
@@ -152,7 +152,7 @@ export function TopHeader() {
               <path d="M8 13.5V20l3.5-3.5"/>
             </svg>
           </a>
-          <a href="https://discord.gg/H27SmfQ7" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+          <a href="https://discord.gg/dJspUX6SQJ" target="_blank" rel="noopener noreferrer" aria-label="Discord">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="9.5" cy="12" r="1.2"/><circle cx="14.5" cy="12" r="1.2"/>
               <path d="M8.5 17s1.5 2 3.5 2 3.5-2 3.5-2"/>

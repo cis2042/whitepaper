@@ -497,6 +497,34 @@ export function PieChart({
             className="hover:brightness-125 transition-all cursor-default"
           />
         ))}
+        {/* Percentage labels on slices */}
+        {slices.map((s, i) => {
+          const pct = (s.value / total) * 100;
+          if (pct < 4) return null;
+          const toRad = (deg: number) => (deg * Math.PI) / 180;
+          const labelR2 = (innerR + outerR) / 2;
+          const labelX = cx + labelR2 * Math.cos(toRad(s.midAngle));
+          const labelY = cy + labelR2 * Math.sin(toRad(s.midAngle));
+          return (
+            <motion.text
+              key={`pct-${i}`}
+              x={labelX}
+              y={labelY}
+              textAnchor="middle"
+              dominantBaseline="central"
+              fill="#fff"
+              fontSize="8"
+              fontWeight="600"
+              fontFamily="var(--font-mono), monospace"
+              style={{ pointerEvents: "none" }}
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.4 + i * 0.08, duration: 0.4 }}
+            >
+              {pct.toFixed(0)}%
+            </motion.text>
+          );
+        })}
         <text x={cx} y={cy - 6} textAnchor="middle" fill="#bfb89a" fontSize="8" fontFamily="var(--font-mono), monospace">
           TOTAL
         </text>

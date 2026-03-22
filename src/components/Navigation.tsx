@@ -115,9 +115,11 @@ export function TopHeader() {
 
         {/* Nav Links */}
         <ul className="nav-links">
+          <li><a href="/">Home</a></li>
           <li><a href="/holders/">Dashboard</a></li>
           <li><a href="/matrix/">Matrix</a></li>
-          <li><a href="/whitepaper/" style={{ color: "var(--green-forest,#a8b87a)" }}>Whitepaper</a></li>
+          <li><a href="/agent/">Agent</a></li>
+          <li><a href="/exchange/">Exchange</a></li>
         </ul>
 
         {/* Social Icons — official brand SVGs */}
@@ -196,8 +198,8 @@ export function TopHeader() {
                 <a href="/" style={{ display: "block", padding: "0.75rem 1rem", fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: isDark ? "#8a8468" : "var(--text-muted)", textDecoration: "none", borderRadius: 8, letterSpacing: "0.04em" }}>Home</a>
                 <a href="/holders/" style={{ display: "block", padding: "0.75rem 1rem", fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: isDark ? "#8a8468" : "var(--text-muted)", textDecoration: "none", borderRadius: 8, letterSpacing: "0.04em" }}>Dashboard</a>
                 <a href="/matrix/" style={{ display: "block", padding: "0.75rem 1rem", fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: isDark ? "#8a8468" : "var(--text-muted)", textDecoration: "none", borderRadius: 8, letterSpacing: "0.04em" }}>Twin Matrix</a>
-                <a href="/onboard/" style={{ display: "block", padding: "0.75rem 1rem", fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: isDark ? "#8a8468" : "var(--text-muted)", textDecoration: "none", borderRadius: 8, letterSpacing: "0.04em" }}>Onboarding</a>
                 <a href="/agent/" style={{ display: "block", padding: "0.75rem 1rem", fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: isDark ? "#8a8468" : "var(--text-muted)", textDecoration: "none", borderRadius: 8, letterSpacing: "0.04em" }}>Agent</a>
+                <a href="/exchange/" style={{ display: "block", padding: "0.75rem 1rem", fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: isDark ? "#8a8468" : "var(--text-muted)", textDecoration: "none", borderRadius: 8, letterSpacing: "0.04em" }}>Exchange</a>
                 <a href="/whitepaper/" style={{ display: "block", padding: "0.75rem 1rem", fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: isDark ? "#d4c89a" : "var(--green-forest)", textDecoration: "none", borderRadius: 8, letterSpacing: "0.04em", fontWeight: 600, background: isDark ? "rgba(212,200,154,0.08)" : "rgba(74,124,89,0.08)" }}>Whitepaper</a>
               </div>
               <div style={{ marginTop: "2rem", paddingTop: "1rem", borderTop: `1px solid ${isDark ? "rgba(168,184,122,0.12)" : "rgba(74,124,89,0.12)"}`, display: "flex", gap: "1.2rem" }}>

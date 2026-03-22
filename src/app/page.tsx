@@ -25,9 +25,9 @@ import {
 
 export default function ExecutiveSummary() {
   /* ── Live stats from holders.twin3.ai ── */
-  const [holders, setHolders] = useState(141547);
-  const [globalRank, setGlobalRank] = useState(7);
-  const [chainRank, setChainRank] = useState(2);
+  const [holders, setHolders] = useState<number | null>(null);
+  const [globalRank, setGlobalRank] = useState<number | null>(null);
+  const [chainRank, setChainRank] = useState<number | null>(null);
   useEffect(() => {
     fetch("https://holders.twin3.ai/api/public/all")
       .then((r) => r.json())

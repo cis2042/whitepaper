@@ -52,7 +52,7 @@ export function AnimatedCounter({
   duration = 2,
   className = "",
 }: {
-  value: number;
+  value: number | null;
   prefix?: string;
   suffix?: string;
   duration?: number;
@@ -65,17 +65,26 @@ export function AnimatedCounter({
   const [display, setDisplay] = useState("0");
 
   useEffect(() => {
-    if (inView) motionVal.set(value);
+    if (inView && value !== null) motionVal.set(value);
   }, [inView, value, motionVal]);
 
   useEffect(() => {
     return spring.on("change", (v) => {
+      if (value === null) return;
       if (value >= 1000000) setDisplay((v / 1000000).toFixed(1) + "M");
       else if (value >= 1000) setDisplay(Math.floor(v).toLocaleString());
       else if (Number.isInteger(value)) setDisplay(Math.floor(v).toString());
       else setDisplay(v.toFixed(2));
     });
   }, [spring, value]);
+
+  if (value === null) {
+    return (
+      <span className={`${className} inline-flex items-center min-h-[1em]`}>
+        <span className="block w-24 h-[0.7em] rounded bg-cream-soft/10 animate-pulse" />
+      </span>
+    );
+  }
 
   return (
     <span ref={ref} className={className}>
@@ -96,7 +105,7 @@ export function KPICard({
   accentColor = "gold",
 }: {
   label: string;
-  value: number;
+  value: number | null;
   suffix?: string;
   prefix?: string;
   note?: string;

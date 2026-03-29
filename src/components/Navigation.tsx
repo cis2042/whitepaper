@@ -2,12 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { X, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
-import Script from "next/script";
-import { useTheme } from "@/components/ThemeProvider";
 
 /* ── GitBook-style sidebar nav items ── */
 type NavItem = {
@@ -65,75 +62,7 @@ const SIDEBAR_NAV: NavItem[] = [
 ];
 
 /* ── Top Header — uses shared nav.js (identical to all other pages) ── */
-export function TopHeader() {
-  const [chapterOpen, setChapterOpen] = useState(false);
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
-  // Sync body.dark so home-nav.css dark-mode selectors work
-  useEffect(() => {
-    document.body.classList.toggle("dark", isDark);
-  }, [isDark]);
-
-  return (
-    <>
-      {/* ── Shared nav injected by nav.js (same as Home/Dashboard/Matrix/Agent/Exchange) ── */}
-      <div id="t3-nav-slot" />
-      <Script src="/nav.js" strategy="afterInteractive" />
-
-      {/* ── Floating Chapter Button (mobile only, in-page) ── */}
-      <button
-        className="lg:hidden"
-        onClick={() => setChapterOpen(true)}
-        aria-label="Open chapters"
-        style={{
-          position: "fixed", bottom: 24, right: 20, zIndex: 100,
-          display: "flex", alignItems: "center", gap: "0.4rem",
-          padding: "0.6rem 1rem", borderRadius: 24,
-          background: isDark ? "rgba(250,250,245,0.95)" : "rgba(10,22,16,0.95)",
-          backdropFilter: "blur(12px)",
-          border: isDark ? "1px solid rgba(74,124,89,0.15)" : "1px solid rgba(168,184,122,0.2)",
-          boxShadow: isDark ? "0 4px 20px rgba(250,250,245,0.2)" : "0 4px 20px rgba(0,0,0,0.4)",
-          cursor: "pointer",
-          color: isDark ? "var(--green-deep)" : "#d4c89a",
-          fontFamily: "var(--font-mono)", fontSize: "0.7rem", letterSpacing: "0.06em",
-        }}
-      >
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-        Chapters
-      </button>
-
-      {/* ── Chapter Drawer (whitepaper chapters) ── */}
-      <AnimatePresence>
-        {chapterOpen && (
-          <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[110] lg:hidden"
-            style={{ background: "var(--drawer-overlay, rgba(6,14,8,0.85))", backdropFilter: "blur(8px)" }}
-            onClick={() => setChapterOpen(false)}
-          >
-            <motion.div
-              initial={{ x: "-100%" }} animate={{ x: 0 }} exit={{ x: "-100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="absolute left-0 top-0 bottom-0 w-[280px] overflow-y-auto p-6 pt-5"
-              style={{ background: "var(--sidebar-bg, #0a1610)", borderRight: "1px solid var(--sidebar-border, rgba(168,184,122,0.12))" }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
-                <a href="https://twin3.ai" className="nav-logo">twin3</a>
-                <button onClick={() => setChapterOpen(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-muted)" }}>
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-              <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.5rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "0.75rem" }}>CHAPTERS</p>
-              <SidebarContent onNavigate={() => setChapterOpen(false)} />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
-}
+export function TopHeader() { return null; }
 
 
 

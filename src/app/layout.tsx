@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import { Inter, EB_Garamond, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import "./home-nav.css";
-import { TopHeader, Sidebar } from "@/components/Navigation";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import HexCanvas from "@/components/HexCanvas";
+import { Sidebar } from "@/components/Navigation";
 
+import HexCanvas from "@/components/HexCanvas";
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const ebGaramond = EB_Garamond({ variable: "--font-eb-garamond", subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 const jetbrainsMono = JetBrains_Mono({ variable: "--font-jetbrains-mono", subsets: ["latin"], weight: ["400", "500", "600"] });
@@ -19,9 +18,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${inter.variable} ${ebGaramond.variable} ${jetbrainsMono.variable} h-full antialiased`}>
       <body className="dark min-h-full flex flex-col relative overflow-x-hidden">
-        <ThemeProvider>
           <HexCanvas />
-          <TopHeader />
+
           <div className="flex flex-1 pt-[72px]">
             <Sidebar />
             <main className="flex-1 min-w-0 lg:ml-[260px] min-h-screen">
@@ -34,7 +32,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               </footer>
             </main>
           </div>
-        </ThemeProvider>
+
       </body>
     </html>
   );

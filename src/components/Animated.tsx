@@ -52,7 +52,7 @@ export function AnimatedCounter({
   duration = 2,
   className = "",
 }: {
-  value: number;
+  value: number | null;
   prefix?: string;
   suffix?: string;
   duration?: number;
@@ -65,17 +65,26 @@ export function AnimatedCounter({
   const [display, setDisplay] = useState("0");
 
   useEffect(() => {
-    if (inView) motionVal.set(value);
+    if (inView && value !== null) motionVal.set(value);
   }, [inView, value, motionVal]);
 
   useEffect(() => {
     return spring.on("change", (v) => {
+      if (value === null) return;
       if (value >= 1000000) setDisplay((v / 1000000).toFixed(1) + "M");
       else if (value >= 1000) setDisplay(Math.floor(v).toLocaleString());
       else if (Number.isInteger(value)) setDisplay(Math.floor(v).toString());
       else setDisplay(v.toFixed(2));
     });
   }, [spring, value]);
+
+  if (value === null) {
+    return (
+      <span className={`${className} inline-flex items-center min-h-[1em]`}>
+        <span className="block w-24 h-[0.7em] rounded bg-cream-soft/10 animate-pulse" />
+      </span>
+    );
+  }
 
   return (
     <span ref={ref} className={className}>
@@ -96,7 +105,7 @@ export function KPICard({
   accentColor = "gold",
 }: {
   label: string;
-  value: number;
+  value: number | null;
   suffix?: string;
   prefix?: string;
   note?: string;
@@ -497,6 +506,34 @@ export function PieChart({
             className="hover:brightness-125 transition-all cursor-default"
           />
         ))}
+        {/* Percentage labels on slices */}
+        {slices.map((s, i) => {
+          const pct = (s.value / total) * 100;
+          if (pct < 4) return null;
+          const toRad = (deg: number) => (deg * Math.PI) / 180;
+          const labelR2 = (innerR + outerR) / 2;
+          const labelX = cx + labelR2 * Math.cos(toRad(s.midAngle));
+          const labelY = cy + labelR2 * Math.sin(toRad(s.midAngle));
+          return (
+            <motion.text
+              key={`pct-${i}`}
+              x={labelX}
+              y={labelY}
+              textAnchor="middle"
+              dominantBaseline="central"
+              fill="#fff"
+              fontSize="8"
+              fontWeight="600"
+              fontFamily="var(--font-mono), monospace"
+              style={{ pointerEvents: "none" }}
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.4 + i * 0.08, duration: 0.4 }}
+            >
+              {pct.toFixed(0)}%
+            </motion.text>
+          );
+        })}
         <text x={cx} y={cy - 6} textAnchor="middle" fill="#bfb89a" fontSize="8" fontFamily="var(--font-mono), monospace">
           TOTAL
         </text>

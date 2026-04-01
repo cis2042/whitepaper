@@ -16,6 +16,8 @@
   --color-foreground: #e8e0c8;
 
   --font-heading: var(--font-eb-garamond);
+  --font-serif: var(--font-eb-garamond);
+  --font-body: var(--font-eb-garamond);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 }
@@ -23,19 +25,32 @@
 :root {
   --background: #0c1a10;
   --foreground: #e8e0c8;
+  --sidebar-bg: #0a1610;
+  --sidebar-border: rgba(168, 184, 122, 0.12);
+  --drawer-overlay: rgba(6, 14, 8, 0.85);
+  --sidebar-text: #bfb89a;
+  --sidebar-text-hover: #e8e0c8;
+  --sidebar-active-text: #d4c89a;
+  --sidebar-active-bg: rgba(212, 200, 154, 0.1);
+  --text-muted: #7a7a7a;
 }
 
 html {
   font-size: 120%;
+  overflow-x: hidden;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-heading), Georgia, serif;
   line-height: 1.75;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 /* Headings use EB Garamond */
@@ -63,32 +78,10 @@ h1, h2, h3, h4 {
   font-family: var(--font-mono), monospace;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
 }
 
-/* Hex Matrix Background */
-.hex-matrix-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  opacity: 0.06;
-  pointer-events: none;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 28px,
-      rgba(168, 184, 122, 0.15) 28px,
-      rgba(168, 184, 122, 0.15) 29px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 28px,
-      rgba(168, 184, 122, 0.15) 28px,
-      rgba(168, 184, 122, 0.15) 29px
-    );
-}
+/* Hex Canvas is now rendered by HexCanvas.tsx React component */
 
 /* Gold Glow (subtle) */
 .glow-gold {
@@ -148,11 +141,13 @@ h1, h2, h3, h4 {
 .prose-wp p {
   color: #bfb89a;
   margin-bottom: 1.2em;
+  font-size: 0.92rem;
 }
 .prose-wp ul, .prose-wp ol {
   color: #bfb89a;
   margin: 1em 0;
   padding-left: 1.5em;
+  font-size: 0.92rem;
 }
 .prose-wp li {
   margin-bottom: 0.5em;
@@ -160,14 +155,14 @@ h1, h2, h3, h4 {
 .prose-wp h2 {
   font-family: var(--font-heading), Georgia, serif;
   color: #e8e0c8;
-  font-size: 1.6rem;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
   margin-top: 2.5rem;
   margin-bottom: 1rem;
 }
 .prose-wp h3 {
   font-family: var(--font-heading), Georgia, serif;
   color: #e8e0c8;
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
   margin-top: 2rem;
   margin-bottom: 0.8rem;
 }
@@ -191,6 +186,9 @@ h1, h2, h3, h4 {
   font-size: 0.85rem;
   border-collapse: collapse;
   margin: 1.5em 0;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .prose-wp thead th {
   font-family: var(--font-mono), monospace;
@@ -234,13 +232,20 @@ h1, h2, h3, h4 {
    ═══════════════════════════════════════════════ */
 
 [data-theme="cream"] {
-  --background: #f2ede0;
+  --background: #fafaf5;
   --foreground: #1a2a1e;
-  --sidebar-bg: #e8e0c8;
+  --sidebar-bg: #f0efe8;
+  --sidebar-border: rgba(106, 138, 90, 0.2);
+  --drawer-overlay: rgba(240, 239, 232, 0.88);
+  --sidebar-text: #4a5a40;
+  --sidebar-text-hover: #1a2a1e;
+  --sidebar-active-text: #2d4a35;
+  --sidebar-active-bg: rgba(106, 138, 90, 0.12);
+  --text-muted: #7a8a70;
 }
 
 [data-theme="cream"] body {
-  background: #f2ede0;
+  background: #fafaf5;
   color: #1a2a1e;
 }
 
@@ -249,9 +254,7 @@ h1, h2, h3, h4 {
   border-color: rgba(106, 138, 90, 0.18);
 }
 
-[data-theme="cream"] .hex-matrix-bg {
-  opacity: 0.03;
-}
+/* hex canvas opacity handled inline by HexCanvas.tsx */
 
 [data-theme="cream"] .prose-wp p,
 [data-theme="cream"] .prose-wp ul,
@@ -377,15 +380,80 @@ h1, h2, h3, h4 {
    ═══════════════════════════════════════════════ */
 .matrix-quadrant-label {
   font-family: var(--font-mono), 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   color: #6fdb8f;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  background: rgba(6, 14, 8, 0.65);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(111, 219, 143, 0.15);
   text-shadow: 0 0 8px rgba(12, 26, 16, 0.9), 0 0 16px rgba(12, 26, 16, 0.7);
 }
 [data-theme="cream"] .matrix-quadrant-label {
-  color: #2d4a35;
-  text-shadow: 0 0 8px rgba(250, 250, 245, 0.9), 0 0 16px rgba(250, 250, 245, 0.7);
+  color: #6fdb8f;
+  background: rgba(6, 14, 8, 0.7);
+  border-color: rgba(111, 219, 143, 0.2);
+  text-shadow: 0 0 8px rgba(12, 26, 16, 0.9), 0 0 16px rgba(12, 26, 16, 0.7);
 }
 
+/* ═══════════════════════════════════════════════
+   Mobile-first responsive fixes
+   ═══════════════════════════════════════════════ */
+
+/* Tables: make them horizontally scrollable and use smaller text on mobile */
+@media (max-width: 639px) {
+  .prose-wp table {
+    font-size: 0.65rem;
+    min-width: 480px;
+  }
+  .prose-wp thead th {
+    font-size: 0.55rem;
+    padding: 0.4rem 0.5rem;
+    white-space: nowrap;
+  }
+  .prose-wp tbody td {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.65rem;
+  }
+  /* Ensure scrollable container */
+  .glass-panel:has(table) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* SVG-based diagrams: prevent overflow on narrow screens */
+.prose-wp svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent any flex child from overflowing its container */
+.prose-wp > *,
+.prose-wp .glass-panel {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+/* ConnectionWeb / Flywheel / Radar — constrain on mobile */
+@media (max-width: 639px) {
+  .prose-wp .relative svg {
+    max-width: 100%;
+  }
+}
+
+/* ── Sidebar link styles (theme-aware) ── */
+.sidebar-link-idle {
+  color: var(--sidebar-text);
+}
+.sidebar-link-idle:hover {
+  color: var(--sidebar-text-hover);
+  background: var(--sidebar-active-bg);
+}
+.sidebar-link-active {
+  color: var(--sidebar-active-text);
+  background: var(--sidebar-active-bg);
+  font-weight: 600;
+}

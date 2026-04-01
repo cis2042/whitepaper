@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# twin3 Whitepaper
 
-## Getting Started
+> The Agentic Economy Protocol — 256D Identity, Soulbound Tokens, Human-AI Value Exchange
 
-First, run the development server:
+A standalone Next.js module for the twin3 protocol whitepaper. Designed to be integrated into [twin3_home](https://github.com/cis2042/twin3_home).
+
+## Quick Start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# → http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Chapters
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| # | Title | Route |
+|---|-------|-------|
+| 1 | Executive Summary | `/` |
+| 2 | The Paradigm Shift | `/paradigm-shift` |
+| 3 | The Work Revolution | `/work-revolution` |
+| 4 | Engineering Human Intelligence | `/human-intelligence` |
+| 5 | Twin Matrix Algorithm | `/algorithm` |
+| 6 | Soul Injection | `/soul-injection` |
+| 7 | The Agent Economy | `/agent-economy` |
+| 8 | Product & UX | `/product` |
+| 9 | Business Model | `/business-model` |
+| 10 | Token Economics | `/tokenomics` |
+| 11 | Investment Opportunity | `/investment` |
+| 12 | Go-to-Market Strategy | `/go-to-market` |
+| 13 | Development Roadmap | `/roadmap` |
+| 14 | Competitive Advantages | `/competitive` |
+| 15 | Core Team | `/team` |
+| 16 | Conclusion & References | `/conclusion` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
 
-## Learn More
+Next.js 15 · React 19 · Tailwind CSS v4 · Framer Motion · Dark/Cream theme
 
-To learn more about Next.js, take a look at the following resources:
+## Integration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+See **[INTEGRATION.md](./INTEGRATION.md)** for full details on how to integrate this module into `twin3_home`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> **The Home project has full authority to modify, restyle, or restructure any content in this module.**
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Proprietary — twin3 / Ming Wen

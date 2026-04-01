@@ -25,12 +25,16 @@ import {
 
 export default function ExecutiveSummary() {
   /* ── Live stats from holders.twin3.ai ── */
-  const [holders, setHolders] = useState(141547);
+  const [holders, setHolders] = useState<number | null>(null);
+  const [globalRank, setGlobalRank] = useState<number | null>(null);
+  const [chainRank, setChainRank] = useState<number | null>(null);
   useEffect(() => {
-    fetch("https://holders.twin3.ai/api/stats/summary")
+    fetch("https://holders.twin3.ai/api/public/all")
       .then((r) => r.json())
       .then((d) => {
-        if (d?.latest?.cumulative_holders) setHolders(d.latest.cumulative_holders);
+        if (d?.overview?.holders?.total) setHolders(d.overview.holders.total);
+        if (d?.overview?.ranking?.global_sbt_rank) setGlobalRank(d.overview.ranking.global_sbt_rank);
+        if (d?.overview?.ranking?.chain_rank) setChainRank(d.overview.ranking.chain_rank);
       })
       .catch(() => {});
   }, []);
@@ -38,9 +42,9 @@ export default function ExecutiveSummary() {
     <article className="prose-wp">
       {/* ── Cinematic Hero ── */}
       <CinematicHero
-        tagline="WHITEPAPER  ·  2025"
-        title="The Infrastructure for Human Value in the Agentic Economy"
-        subtitle="A Decentralized Marketplace for Authentic Human Experience in the Agentic Economy"
+        tagline="WHITEPAPER  ·  2026"
+        title="Injecting Human Soul into AI Agents"
+        subtitle="Build Your 256D Digital Soul · Deploy Personal AI Agents · Enter the Agent Economy"
       />
 
       {/* ── The Thesis — word-by-word reveal ── */}
@@ -208,10 +212,10 @@ export default function ExecutiveSummary() {
           <KPICard label="SBT Holders" value={holders} prefix="" note="On BNB Chain · Live" accentColor="gold" />
         </RevealItem>
         <RevealItem>
-          <KPICard label="Global Ranking" value={7} prefix="#" note="All SBT projects" accentColor="cream" />
+          <KPICard label="Global Ranking" value={globalRank} prefix="#" note="All SBT projects" accentColor="cream" />
         </RevealItem>
         <RevealItem>
-          <KPICard label="BNB Chain" value={2} prefix="#" note="Second to Binance BAB" accentColor="sage" />
+          <KPICard label="BNB Chain" value={chainRank} prefix="#" note="Second to Binance BAB" accentColor="sage" />
         </RevealItem>
       </RevealSection>
 

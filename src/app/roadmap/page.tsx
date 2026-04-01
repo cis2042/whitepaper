@@ -58,7 +58,7 @@ export default function Roadmap() {
                   "Matrix SDK Alpha — Read & Write APIs for ecosystem partners",
                   "AI task matching engine — HaaS marketplace beta",
                   "Enterprise pilots (3+ partners)",
-                  "Seed round close ($1.5M target)",
+                  "Seed round open ($1.5M target)",
                   "$twin3 TGE and DEX listing",
                   "DAO governance beta launch",
                   "Target: 500,000+ SBT holders",

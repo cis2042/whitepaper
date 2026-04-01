@@ -148,40 +148,7 @@ export default function Investment() {
         </RevealItem>
       </RevealSection>
 
-      <SectionDivider label="SAFT TERMS" />
-
-      <RevealSection>
-        <RevealItem>
-          <h2>10.4 Token Allocation for SAFT Investors</h2>
-        </RevealItem>
-        <RevealItem>
-          <div className="glass-panel rounded-lg p-6 my-6 space-y-3">
-            <div className="flex items-center gap-3">
-              <span className="mono-label text-[0.5rem] text-gold w-24">Entry Price</span>
-              <span className="text-cream">$0.04 per token</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="mono-label text-[0.5rem] text-gold w-24">TGE Unlock</span>
-              <span className="text-cream">0% — No tokens at TGE</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="mono-label text-[0.5rem] text-gold w-24">Cliff</span>
-              <span className="text-cream">12 months</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="mono-label text-[0.5rem] text-gold w-24">Vesting</span>
-              <span className="text-cream">36 months linear (after cliff)</span>
-            </div>
-          </div>
-        </RevealItem>
-        <RevealItem>
-          <p>
-            This vesting structure is intentionally conservative. It signals confidence in the
-            project&apos;s long-term trajectory and aligns SAFT investors with multi-year ecosystem
-            growth — not short-term speculation.
-          </p>
-        </RevealItem>
-      </RevealSection>
+      {/* Chapter 10.4 — SAFT Terms — temporarily hidden */}
 
       <SectionDivider />
 

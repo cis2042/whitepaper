@@ -514,36 +514,72 @@ export function ValueFlow({
   const inView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <div ref={ref} className={`flex items-center gap-0 my-6 ${className}`}>
-      <motion.div
-        className="glass-panel rounded-lg p-4 flex-1 text-center"
-        initial={{ opacity: 0, x: -20 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.5 }}
-      >
-        <span className="font-heading text-cream text-sm">{from}</span>
-      </motion.div>
-
-      <div className="relative w-32 h-8 mx-2 overflow-hidden">
-        <DataStream direction="right" speed={8} className="absolute inset-0" />
+    <div ref={ref} className={`my-6 ${className}`}>
+      {/* Desktop: horizontal */}
+      <div className="hidden sm:flex items-center gap-0">
         <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mono-label text-[0.45rem] text-gold/70 bg-base-deep/80 px-2 py-0.5 rounded-full whitespace-nowrap"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ delay: 0.5, duration: 0.3, type: "spring" }}
+          className="glass-panel rounded-lg p-4 flex-1 text-center"
+          initial={{ opacity: 0, x: -20 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5 }}
         >
-          {value}
+          <span className="font-heading text-cream text-sm">{from}</span>
+        </motion.div>
+
+        <div className="relative w-32 h-8 mx-2 overflow-hidden shrink-0">
+          <DataStream direction="right" speed={8} className="absolute inset-0" />
+          <motion.div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mono-label text-[0.45rem] text-gold/70 bg-base-deep/80 px-2 py-0.5 rounded-full whitespace-nowrap"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.5, duration: 0.3, type: "spring" }}
+          >
+            {value}
+          </motion.div>
+        </div>
+
+        <motion.div
+          className="glass-panel rounded-lg p-4 flex-1 text-center"
+          initial={{ opacity: 0, x: 20 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <span className="font-heading text-cream text-sm">{to}</span>
         </motion.div>
       </div>
 
-      <motion.div
-        className="glass-panel rounded-lg p-4 flex-1 text-center"
-        initial={{ opacity: 0, x: 20 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.5, delay: 0.3 }}
-      >
-        <span className="font-heading text-cream text-sm">{to}</span>
-      </motion.div>
+      {/* Mobile: vertical */}
+      <div className="flex sm:hidden flex-col items-center gap-2">
+        <motion.div
+          className="glass-panel rounded-lg p-3 w-full text-center"
+          initial={{ opacity: 0, y: -10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4 }}
+        >
+          <span className="font-heading text-cream text-sm">{from}</span>
+        </motion.div>
+
+        <div className="flex flex-col items-center gap-0.5">
+          <motion.div
+            className="mono-label text-[0.45rem] text-gold/70 bg-base-deep/80 px-2 py-0.5 rounded-full whitespace-nowrap"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.3, duration: 0.3, type: "spring" }}
+          >
+            {value}
+          </motion.div>
+          <svg width="12" height="20" viewBox="0 0 12 20" fill="none" stroke="rgba(212,200,154,0.4)" strokeWidth="1.5"><path d="M6 0v16M2 13l4 4 4-4"/></svg>
+        </div>
+
+        <motion.div
+          className="glass-panel rounded-lg p-3 w-full text-center"
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4, delay: 0.3 }}
+        >
+          <span className="font-heading text-cream text-sm">{to}</span>
+        </motion.div>
+      </div>
     </div>
   );
 }
